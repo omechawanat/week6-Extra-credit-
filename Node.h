@@ -20,45 +20,35 @@ typedef struct node* NodePtr;
 void enqueue(NodePtr * head, NodePtr* tail, int x){
   Node* new_node=(NodePtr) malloc(sizeof(Node));
 if(new_node){ 
-  //Fill in data information/
+    //Fill in Data information
     new_node->data=x;
     new_node->nextPtr=NULL;
-    /* Finish dequeue*/
     if((*head)==NULL){//หัวแถว
       *head=new_node;
-      *tail=new_node;
     }
-    else{//ท้ายแถว
-        (*tail)->nextPtr=new_node;
-        *tail=new_node;
+    else{//ต่อแถว
+      (*tail)->nextPtr=new_node;
     }
-
-
+    *tail=new_node;
  }
 }
+
 
 int dequeue(NodePtr* head, NodePtr* tail){
   NodePtr t=*head;
    if(t){
-   int value=t->data;
-   /* Finish dequeue*/
-   // Normal Case
-        *head=t->nextPtr;
-        free(t);
-        if(*head==NULL){
-          *tail=NULL;
-        }
-
-   // Last Queue
-        if((*head)==(*tail)) {
-          *tail=NULL;
-        }
+   int value= t->data;
+      /* Finish dequeue*/
+      //Normal case
+    *head=t->nextPtr;
+    free(t);
+   //Last node
+    if(*head==NULL) *tail=NULL;
        
        
    return value;
    }
    printf("Empty queue");
-
    return 0;
 }
 
